@@ -1,5 +1,5 @@
 // --- Configuration ---
-const API_URL = "http://localhost:3000/chat";
+const API_URL = "https://chatbot-project-86yf.onrender.com/chat";
 const STORAGE_KEY = "chatmate_history";
 
 // --- DOM Elements ---
