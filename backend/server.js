@@ -25,6 +25,7 @@ app.post("/chat", async (req, res) => {
       return res.status(400).json({ reply: "Message is required" });
     }
 
+    // Call OpenRouter API
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -39,14 +40,25 @@ app.post("/chat", async (req, res) => {
       })
     });
 
+    // ✅ Handle API errors properly
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("API ERROR:", errorText);
+      return res.json({ reply: "API error: check key or model" });
+    }
+
     const data = await response.json();
 
-    const reply = data?.choices?.[0]?.message?.content || "No response from AI";
+    console.log("API RESPONSE:", data);
+
+    const reply =
+      data?.choices?.[0]?.message?.content ||
+      "No response from AI";
 
     res.json({ reply });
 
   } catch (error) {
-    console.error("Error:", error);
+    console.error("SERVER ERROR:", error);
     res.status(500).json({ reply: "Server error" });
   }
 });
