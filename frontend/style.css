@@ -59,12 +59,13 @@ body {
     height: 32px;
     background: var(--accent-gradient);
     border-radius: 8px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 0.75rem;
-    color: white;
+
+    font-size: 1.2rem;   
+    line-height: 1;      
 }
 
 .brand h1 {
